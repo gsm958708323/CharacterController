@@ -30,7 +30,7 @@ public class CameraMgr : MonoBehaviour
     /// </summary>
     [SerializeField] Vector3 cameraOffset = new Vector3(0, 2.19f, -6.84f);
 
-    [SerializeField] float posSmoothTime = 0.1f;
+    [SerializeField] float posSmoothTime = 0f;
 
     Vector2 cameraLook;
 

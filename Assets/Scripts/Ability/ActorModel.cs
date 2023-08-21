@@ -31,19 +31,21 @@ namespace Ability
         private int curFrame;
         private float fps;
 
+        [Header("人物状态")]
         public bool IsDead;
         public bool IsInvincible;
         public bool IsGround;
         public bool IsAerial;
+        public bool IsAiming;
         float cacheAerialTime;
         float delayAerialTime = 0.5f;
 
         [HideInInspector] public PlayerGameInput GameInput;
+        [HideInInspector] public AnimatorController AnimatorController;
         CharacterController characterController;
+        [Header("移动状态")]
         public float Gravity = -9.8f;
-        public Vector3 Frictional;
-        public Vector2 InputDir;
-        public Vector3 EulerAngles;
+        public Vector3 Frictional = new Vector3(0.5f, 0, 0.5f);
         public Quaternion Rotation;
         public Vector3 Velocity;
         [HideInInspector] public GroundChecker groundChecker;
@@ -69,6 +71,7 @@ namespace Ability
             HurtBox.Enter(this);
 
             characterController = GetComponent<CharacterController>();
+            AnimatorController = GetComponentInChildren<AnimatorController>();
             GameInput = GetComponent<PlayerGameInput>();
             groundChecker = GetComponent<GroundChecker>();
         }
@@ -86,6 +89,7 @@ namespace Ability
             }
 
             UpdatePhysics();
+            UpdateAnimation();
         }
 
         private void UpdatePhysics()
@@ -134,17 +138,21 @@ namespace Ability
 
         }
 
-        private void OnDrawGizmos()
+        private void UpdateAnimation()
         {
-            if (Target != null && ActorType == ActorType.Enemy)
+            AnimatorController.Animator.SetBool(AnimatorController.IsMovement, Velocity.magnitude > 0.01f);
+            AnimatorController.Animator.SetBool(AnimatorController.IsAiming, IsAiming);
+            
+            if (IsAiming)
             {
-                Gizmos.DrawLine(transform.position, Target.transform.position);
-                // Target.transform.LookAt(dir);
-
-                // var dir = Target.transform.position - transform.position;
-                // dir.y = 0;
-                // float angle = Vector3.Angle(transform.forward, dir);
-                // EulerAngles = angle * Vector3.up;
+                var inputDir = tree.ActorModel.GameInput.GetPlayerInput().Movement.ReadValue<Vector2>();
+                AnimatorController.Animator.SetFloat(AnimatorController.HorizontalMovement, inputDir.x);
+                AnimatorController.Animator.SetFloat(AnimatorController.VerticalMovement, inputDir.y);
+            }
+            else
+            {
+                AnimatorController.Animator.SetFloat(AnimatorController.HorizontalMovement, 0);
+                AnimatorController.Animator.SetFloat(AnimatorController.VerticalMovement, 1);
             }
         }
     }

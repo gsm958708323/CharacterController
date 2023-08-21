@@ -51,10 +51,13 @@ MonoBehaviour:
       Data: 60
     - Name: moveSpeed
       Entry: 4
-      Data: 10
+      Data: 4
     - Name: rotationRatio
       Entry: 4
       Data: 0.2
+    - Name: useCameraRot
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
