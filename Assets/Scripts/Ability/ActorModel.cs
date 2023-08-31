@@ -140,9 +140,12 @@ namespace Ability
 
         private void UpdateAnimation()
         {
+            if (AnimatorController == null)
+                return;
+
             AnimatorController.Animator.SetBool(AnimatorController.IsMovement, Velocity.magnitude > 0.01f);
             AnimatorController.Animator.SetBool(AnimatorController.IsAiming, IsAiming);
-            
+
             if (IsAiming)
             {
                 var inputDir = tree.ActorModel.GameInput.GetPlayerInput().Movement.ReadValue<Vector2>();
