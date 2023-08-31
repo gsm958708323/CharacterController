@@ -352,9 +352,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 1706850053}
   endPoint: {fileID: 174434105}
-  JumpTime: 11.202303
+  JumpTime: 1.1202303
   Height: 5
-  JumpSpeed: 1
+  JumpSpeed: 10
+  maxHeight: 0
+  maxHeightTemp: 0
 --- !u!23 &1429707967
 MeshRenderer:
   m_ObjectHideFlags: 0
