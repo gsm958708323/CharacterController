@@ -38,7 +38,7 @@ public class PlatformController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            maxHeight = 0;
+            // maxHeight = 0;
             ChangeState(true);
         }
         Jump();
@@ -53,30 +53,34 @@ public class PlatformController : MonoBehaviour
         this.transform.Translate(Vector3.right * Time.deltaTime * Mathf.Sin(curJumpTime) * 3);
     }
 
-    public float maxHeight;
-    public float maxHeightTemp;
+    // public float maxHeight;
+    // public float maxHeightTemp;
 
     void Jump()
     {
         if (isJump)
         {
+            // curJumpTime += Time.deltaTime;
+            // if (curJumpTime < JumpTime)
+            // {
+            //     float t = curJumpTime / JumpTime;
+            //     transform.position = Lerp(startPoint.position, endPoint.position, t);
+            //     var x = t * Mathf.PI;
+            //     var heightOffet = Height - 3 > 0 ? Height - 3 : 0;
+            //     float posY = Mathf.Sin(x) * heightOffet;
+            //     transform.position += posY * Vector3.up;
+            // }
+            // else
+            // {
+            //     ChangeState(false);
+            //     curJumpTime = 0.0f;
+            // }
+
             curJumpTime += Time.deltaTime;
             if (curJumpTime < JumpTime)
             {
-                float t = curJumpTime / JumpTime;
-                transform.position = Vector3.Lerp(startPoint.position, endPoint.position, t);
-                // transform.position += (endPoint.position - startPoint.position).normalized * JumpSpeed * Time.deltaTime;
-                var x = t * Mathf.PI;
-                var heightOffet = Height - 3 > 0 ? Height -3 : 0;
-                float posY = Mathf.Sin(x) * heightOffet;
-                // float posY = sinCurvy.GetZhengXianValue(x);
-                transform.position += posY * Vector3.up;
-                if (transform.position.y > maxHeight)
-                {
-                    maxHeight = transform.position.y;
-                    maxHeightTemp = maxHeight - endPoint.position.y;
-                }
-                Debug.Log($"{t} =====  {Mathf.Rad2Deg * x} ===== {Mathf.Sin(x)}");
+                Vector3 offset = GetOffset();
+                transform.position += offset;
             }
             else
             {
@@ -84,6 +88,28 @@ public class PlatformController : MonoBehaviour
                 curJumpTime = 0.0f;
             }
         }
+    }
+
+    Vector3 GetOffset()
+    {
+        float t = curJumpTime / JumpTime; // 时间因子（0-1之间）
+        var nextPos = Lerp(startPoint.position, endPoint.position, t);
+        var x = nextPos.x - transform.position.x;
+        var y = nextPos.y - transform.position.y;
+        var z = nextPos.z - transform.position.z;
+
+        var heightOffet = Height - 3 > 0 ? Height - 3 : 0;
+        float posY = Mathf.Sin(t * Mathf.PI) * heightOffet;
+
+        return new Vector3(x, y + posY, z);
+    }
+
+    public Vector3 Lerp(Vector3 value1, Vector3 value2, float amount)
+    {
+        return new Vector3(
+            value1.x + (value2.x - value1.x) * amount,
+            value1.y + (value2.y - value1.y) * amount,
+            value1.z + (value2.z - value1.z) * amount);
     }
 
     void ChangeState(bool isJump)
@@ -106,3 +132,89 @@ public class PlatformController : MonoBehaviour
         }
     }
 }
+
+// using UnityEngine;
+
+// public class PlatformController : MonoBehaviour
+// {
+//     public Transform target;
+//     public float maxHeight = 2f;
+//     public float duration = 2f;
+
+//     private Vector3 startPosition;
+//     private float startTime;
+
+//     private void Start()
+//     {
+//         startPosition = transform.position;
+//         startTime = Time.time;
+//     }
+
+//     private void Update()
+//     {
+//         if (target != null)
+//         {
+//             // 计算所需的初速度
+//             Vector3 displacement = target.position - startPosition;
+//             float displacementY = displacement.y;
+//             displacement.y = 0f;
+//             float horizontalDisplacement = displacement.magnitude;
+//             float time = Mathf.Sqrt(-2f * maxHeight / Physics.gravity.y) + Mathf.Sqrt(2f * (displacementY - maxHeight) / Physics.gravity.y);
+//             Vector3 velocity = new Vector3(0f, Mathf.Sqrt(-2f * Physics.gravity.y * maxHeight), 0f) + displacement.normalized * horizontalDisplacement / time;
+
+//             // 应用初速度
+//             float elapsedTime = Time.time - startTime;
+//             if (elapsedTime < duration)
+//             {
+//                 transform.position = startPosition + velocity * elapsedTime + 0.5f * Physics.gravity * elapsedTime * elapsedTime;
+//             }
+//             else
+//             {
+//                 transform.position = target.position;
+//             }
+//         }
+//     }
+// }
+
+
+// using UnityEngine;
+
+// public class PlatformController : MonoBehaviour
+// {
+//     public Transform targetPosition; // 目标位置
+//     public float totalTimeToReachTarget = 2.0f; // 到达目标位置所需的总时间
+
+//     private Vector3 initialPosition;
+//     private Vector3 target;
+//     private float startTime;
+
+//     private void Start()
+//     {
+//         initialPosition = transform.position;
+//         target = targetPosition.position;
+//         startTime = Time.time;
+//     }
+
+//     private void Update()
+//     {
+//         // 计算经过的时间
+//         float elapsedTime = Time.time - startTime;
+
+//         if (elapsedTime < totalTimeToReachTarget)
+//         {
+//             // 根据抛物线公式计算物体的新位置
+//             Vector3 newPosition = CalculateParabolicPosition(elapsedTime);
+//             transform.position = newPosition;
+//         }
+//     }
+
+//     // 根据抛物线公式计算物体在给定时间内的新位置
+//     private Vector3 CalculateParabolicPosition(float time)
+//     {
+//         float t = time / totalTimeToReachTarget;
+//         Vector3 position = Vector3.Lerp(initialPosition, target, t);
+//         position.y = initialPosition.y + (-Physics.gravity.y * Mathf.Pow(t, 2) * totalTimeToReachTarget) / 2;
+//         return position;
+//     }
+
+// }

@@ -1,0 +1,331 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e6efcdbfd523a40a7197a336d5959d, type: 3}
+  m_Name: ChatLog_20231011_103743
+  m_EditorClassIdentifier: 
+  Entries:
+  - Id: e0e1a094-aef7-4928-9888-bbdf1d121709
+    Prompt: "\u5E2E\u6211\u751F\u6210\u4E00\u4E2A\u767B\u9646\u754C\u9762\uFF0C\u754C\u9762\u5E03\u5C40\u7F8E\u89C2\u4E00\u4E9B"
+    Response: 'Create GameObject loginPanel from prefab Panel
+
+      Set loginPanel
+      > FlexalonFlexibleLayout > Direction > 0
+
+      Set loginPanel > FlexalonFlexibleLayout
+      > HorizontalAlign > 0
+
+      Set loginPanel > FlexalonFlexibleLayout > HorizontalInnerAlign
+      > 0
+
+      Set loginPanel > FlexalonFlexibleLayout > VerticalAlign > 2
+
+      Set
+      loginPanel > FlexalonFlexibleLayout > VerticalInnerAlign > 2
+
+      Set loginPanel
+      > FlexalonFlexibleLayout > Gap > 0
+
+      Set loginPanel > FlexalonFlexibleLayout
+      > GapType > 0
+
+      Set loginPanel > FlexalonObject > WidthType > 3
+
+      Set
+      loginPanel > FlexalonObject > HeightType > 3
+
+      Set loginPanel > FlexalonObject
+      > MinWidthType > 1
+
+      Set loginPanel > FlexalonObject > MinHeightType >
+      1
+
+      Set loginPanel > FlexalonFlexibleLayout > Direction > 3
+
+      Set
+      loginPanel > FlexalonObject > WidthType > 0
+
+      Add Component FlexalonFlexibleLayout
+      to Canvas
+
+      Set Canvas > FlexalonFlexibleLayout > Direction > 3
+
+      Set
+      loginPanel > FlexalonFlexibleLayout > VerticalAlign > 1
+
+      Set loginPanel
+      > FlexalonFlexibleLayout > VerticalInnerAlign > 1
+
+      Set loginPanel > FlexalonFlexibleLayout
+      > HorizontalAlign > 1
+
+      Set loginPanel > FlexalonFlexibleLayout > HorizontalInnerAlign
+      > 1
+
+      Set loginPanel > FlexalonObject > HeightType > 1
+
+      Set loginPanel
+      > Image > color > #F3F4F6FF
+
+      Create GameObject loginForm
+
+      Move
+      GameObject loginForm to loginPanel at index 0
+
+      Add Component Image to
+      loginForm
+
+      Set loginForm > Image > color > #FFFFFFFF
+
+      Add Component
+      FlexalonObject to loginForm
+
+      Set loginForm > FlexalonObject > PaddingTop
+      > 24
+
+      Set loginForm > FlexalonObject > PaddingRight > 24
+
+      Set loginForm
+      > FlexalonObject > PaddingBottom > 24
+
+      Set loginForm > FlexalonObject
+      > PaddingLeft > 24
+
+      Set loginForm > FlexalonObject > Width > 320
+
+      Set
+      loginForm > FlexalonObject > WidthType > 0
+
+      Create GameObject usernameLabel
+
+      Add
+      Component TextMeshProUGUI to usernameLabel
+
+      Add Component FlexalonObject
+      to usernameLabel
+
+      Move GameObject usernameLabel to loginForm at index
+      0
+
+      Add Component FlexalonFlexibleLayout to loginForm
+
+      Set loginForm
+      > FlexalonFlexibleLayout > Wrap > true
+
+      Set loginForm > FlexalonObject
+      > HeightType > 3
+
+      Set usernameLabel > TextMeshProUGUI > text > Username
+
+      Create
+      GameObject usernameInput from prefab InputField
+
+      Set usernameInput >
+      FlexalonObject > MinWidth > 160
+
+      Set usernameInput > FlexalonObject >
+      MinWidthType > 1
+
+      Move GameObject usernameInput to loginForm at index
+      1
+
+      Set usernameInput > FlexalonObject > WidthType > 2
+
+      Set usernameInput
+      > FlexalonObject > HeightType > 2
+
+      Set usernameInput > FlexalonObject
+      > MinHeightType > 1
+
+      Set usernameLabel > FlexalonStyle > TextMeshProUGUI
+      > fontStyle > 1
+
+      Set usernameLabel > FlexalonObject > MarginBottom >
+      8
+
+      Set usernameLabel > FlexalonStyle > TextMeshProUGUI > color > #374151FF
+
+      Set
+      usernameInput > FlexalonObject > MarginBottom > 16
+
+      Set usernameInput
+      > FlexalonObject > WidthType > 1
+
+      Set usernameInput > FlexalonObject
+      > PaddingTop > 8
+
+      Set usernameInput > FlexalonObject > PaddingBottom
+      > 8
+
+      Create GameObject passwordLabel
+
+      Add Component TextMeshProUGUI
+      to passwordLabel
+
+      Add Component FlexalonObject to passwordLabel
+
+      Move
+      GameObject passwordLabel to loginForm at index 2
+
+      Set passwordLabel >
+      TextMeshProUGUI > text > Password
+
+      Create GameObject passwordInput from
+      prefab InputField
+
+      Set passwordInput > FlexalonObject > MinWidth > 160
+
+      Set
+      passwordInput > FlexalonObject > MinWidthType > 1
+
+      Set passwordInput
+      > TMP_InputField > contentType > 7
+
+      Move GameObject passwordInput to
+      loginForm at index 3
+
+      Set passwordInput > FlexalonObject > WidthType
+      > 2
+
+      Set passwordInput > FlexalonObject > HeightType > 2
+
+      Set passwordInput
+      > FlexalonObject > MinHeightType > 1
+
+      Set passwordLabel > FlexalonStyle
+      > TextMeshProUGUI > fontStyle > 1
+
+      Set passwordLabel > FlexalonObject
+      > MarginBottom > 8
+
+      Set passwordLabel > FlexalonStyle > TextMeshProUGUI
+      > color > #374151FF
+
+      Set passwordInput > FlexalonObject > MarginBottom
+      > 16
+
+      Set passwordInput > FlexalonObject > WidthType > 1
+
+      Set passwordInput
+      > FlexalonObject > PaddingTop > 8
+
+      Set passwordInput > FlexalonObject
+      > PaddingBottom > 8
+
+      Create GameObject loginButton from prefab Button
+
+      Set
+      loginButton > FlexalonStyle > TextMeshProUGUI > alignment > 514
+
+      Move
+      GameObject loginButton to loginForm at index 4
+
+      Create GameObject Text
+
+      Add
+      Component TextMeshProUGUI to Text
+
+      Add Component FlexalonObject to Text
+
+      Move
+      GameObject Text to loginButton at index 0
+
+      Set loginButton > FlexalonFlexibleLayout
+      > Direction > 3
+
+      Set loginButton > FlexalonFlexibleLayout > HorizontalAlign
+      > 1
+
+      Set loginButton > FlexalonFlexibleLayout > VerticalAlign > 2
+
+      Set
+      loginButton > FlexalonFlexibleLayout > VerticalInnerAlign > 2
+
+      Set loginButton
+      > FlexalonFlexibleLayout > GapType > 0
+
+      Set loginButton > FlexalonFlexibleLayout
+      > WrapGapType > 0
+
+      Set loginButton > FlexalonObject > WidthType > 3
+
+      Set
+      loginButton > FlexalonObject > HeightType > 3
+
+      Set loginButton > FlexalonObject
+      > MinWidthType > 1
+
+      Set loginButton > FlexalonObject > MinHeightType
+      > 1
+
+      Set Text > TextMeshProUGUI > text > Log in
+
+      Set loginButton
+      > FlexalonObject > WidthType > 1
+
+      Clear loginButton > Image > sprite
+
+      Set
+      loginButton > Image > color > #3B82F6FF
+
+      Set loginButton > FlexalonStyle
+      > TextMeshProUGUI > color > #FFFFFFFF
+
+      Set loginButton > FlexalonObject
+      > PaddingTop > 8
+
+      Set loginButton > FlexalonObject > PaddingRight > 8
+
+      Set
+      loginButton > FlexalonObject > PaddingBottom > 8
+
+      Set loginButton > FlexalonObject
+      > PaddingLeft > 8'
+  - Id: 439a415c-1599-485e-9ed8-7bff3589e163
+    Prompt: "\u8BF7\u628A\u6309\u94AE\u653E\u5230\u5355\u72EC\u7684\u4E00\u884C\uFF0C\u5E76\u9002\u914D\u5F53\u524D\u5206\u8FA8\u7387"
+    Response: 'Set usernameLabel > RectTransform > offsetMin.x > -94.87
+
+      Set
+      usernameLabel > RectTransform > offsetMax.x > -94.87
+
+      Set usernameLabel
+      > RectTransform > offsetMin.y > 49.4
+
+      Set usernameLabel > RectTransform
+      > offsetMax.y > 49.4
+
+      Set usernameInput > FlexalonObject > HeightType
+      > 0
+
+      Set passwordLabel > RectTransform > offsetMin.x > -97.00999
+
+      Set
+      passwordLabel > RectTransform > offsetMax.x > -97.00999
+
+      Set passwordLabel
+      > RectTransform > offsetMin.y > 3.399998
+
+      Set passwordLabel > RectTransform
+      > offsetMax.y > 3.399998
+
+      Set passwordInput > FlexalonObject > HeightType
+      > 0
+
+      Set loginForm > FlexalonFlexibleLayout > Direction > 3
+
+      Set
+      loginForm > FlexalonFlexibleLayout > WrapDirection > 0
+
+      Set loginButton
+      > FlexalonObject > WidthType > 3
+
+      Set loginButton > FlexalonObject >
+      WidthType > 1'

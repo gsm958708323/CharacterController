@@ -248,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174434104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.46, y: 6, z: 5.97}
+  m_LocalPosition: {x: -8.46, y: 0, z: 5.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -352,11 +352,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 1706850053}
   endPoint: {fileID: 174434105}
-  JumpTime: 1.1202303
-  Height: 5
+  JumpTime: 1.596
+  Height: 10
   JumpSpeed: 10
-  maxHeight: 0
-  maxHeightTemp: 0
 --- !u!23 &1429707967
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -639,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706850052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 5.97}
+  m_LocalPosition: {x: 7.5, y: 0, z: 5.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
