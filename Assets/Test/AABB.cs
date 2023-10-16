@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
-using UnityEngine.UIElements;
 
+/// <summary>
+/// 最大最小值
+/// </summary>
 public class AABB : MonoBehaviour
 {
     public Vector3 Pos;
