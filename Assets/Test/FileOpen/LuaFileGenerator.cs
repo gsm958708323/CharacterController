@@ -42,7 +42,7 @@ public class LuaFileGenerator : MonoBehaviour
         }
     }
 
-    string luaFile = @"G:\000Work\20230801_demo\Assets\EditorTool\LuaData\tab\scene_item_template\test.lua";
+    string luaFile = @"G:\000Work\20230801_demo\Assets\EditorTool\SceneItemTemplate\test.lua";
     LuaTable triggerCfgData;
 
     private void ReadLuaCfg()
@@ -64,14 +64,19 @@ public class LuaFileGenerator : MonoBehaviour
         var str = PrintLuaTableToString(triggerCfgData);
         print(str);
 
-
-        var newTestTable = new TestTable() { A = 1, B = 2 };
-        testTable = null;
-        void ReadTest(ref TestTable table)
-        {
-            table = newTestTable;
-        }
-        ReadTest(ref testTable);
+        var monsterData = allConfig.Get<string, LuaTable>("MonsterMarkInfo");
+        // var config = monsterData.Get<int, LuaTable>(1);
+        // monsterData.Set<int, LuaTable>(10000, config);
+        // monsterData.Set<int, LuaTable>(1, null);
+        // print(PrintLuaTableToString(triggerCfgData));
+    
+        var newTable = Env.NewTable();
+        monsterData.ForEach<int, LuaTable>((k,v)=>{
+            var newId = k + 1000;
+            newTable.Set(newId, v);
+        });
+        allConfig.Set("MonsterMarkInfo", newTable);
+        print(PrintLuaTableToString(allConfig));
     }
 
     TestTable testTable;
@@ -83,6 +88,8 @@ public class LuaFileGenerator : MonoBehaviour
 
     string PrintLuaTableToString(LuaTable table, string indentation = "")
     {
+        if (table == null)
+            return "";
         StringBuilder result = new StringBuilder();
 
         table.ForEach<object, object>((key, value) =>
