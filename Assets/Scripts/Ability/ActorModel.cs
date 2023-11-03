@@ -149,13 +149,13 @@ namespace Ability
             if (IsAiming)
             {
                 var inputDir = tree.ActorModel.GameInput.GetPlayerInput().Movement.ReadValue<Vector2>();
-                AnimatorController.Animator.SetFloat(AnimatorController.HorizontalMovement, inputDir.x);
-                AnimatorController.Animator.SetFloat(AnimatorController.VerticalMovement, inputDir.y);
+                AnimatorController.Animator.SetFloat(AnimatorController.HorizontalMovement, inputDir.x, 0.2f, fps);
+                AnimatorController.Animator.SetFloat(AnimatorController.VerticalMovement, inputDir.y, 0.2f, fps);
             }
             else
             {
-                AnimatorController.Animator.SetFloat(AnimatorController.HorizontalMovement, 0);
-                AnimatorController.Animator.SetFloat(AnimatorController.VerticalMovement, 1);
+                AnimatorController.Animator.SetFloat(AnimatorController.HorizontalMovement, 0, 0.2f, fps);
+                AnimatorController.Animator.SetFloat(AnimatorController.VerticalMovement, 1, 0.2f, fps);
             }
         }
     }

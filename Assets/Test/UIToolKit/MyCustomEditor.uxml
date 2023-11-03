@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="Hello World! From UXML" />
+    <ui:Button text="Button" display-tooltip-when-elided="true" name="Button" style="height: 66px; width: 132px; -unity-text-align: middle-center; white-space: normal; align-items: auto; justify-content: center;" />
+
+    <ui:Button text="This is button2" name="button2"/>
+</ui:UXML>
