@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 1429707967}
   - component: {fileID: 1429707971}
   - component: {fileID: 1429707965}
+  - component: {fileID: 1429707972}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -345,16 +346,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429707964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0400b2aa8af3494c963d27dc973ca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startPoint: {fileID: 1706850053}
   endPoint: {fileID: 174434105}
-  JumpTime: 1.596
+  JumpTime: 3
   Height: 10
   JumpSpeed: 10
+  paramA: 0.15703419
+  paramH: 7.98
+  paramK: 10
+  Test2Speed: 5.32
 --- !u!23 &1429707967
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -432,6 +437,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e5d0edf2979bd4dbcc651c90426bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1429707972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429707964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913f1c84788b5884abd305dc9eb61cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 174434105}
+  totalTime: 5
+  peakHeight: 3
 --- !u!1 &1435221705
 GameObject:
   m_ObjectHideFlags: 0

@@ -146,7 +146,7 @@ public class LuaFileGenerator : MonoBehaviour
 
 public class ItemTemplateWindow : OdinEditorWindow
 {
-    [MenuItem("MyTools/My Odin Window")]
+    [MenuItem("Tools/My Odin Window")]
     public static void OpenWindow()
     {
         GetWindow<ItemTemplateWindow>().Show();

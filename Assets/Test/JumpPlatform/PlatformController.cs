@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
+    [Header("===========point============")]
     public Transform startPoint;
     public Transform endPoint;
+    [Header("===========test1============")]
     public float JumpTime = 1.0f;
     private float curJumpTime = 0.0f;
     private bool isJump = false;
@@ -16,21 +18,20 @@ public class PlatformController : MonoBehaviour
     private void OnValidate()
     {
         var dis = (startPoint.position - endPoint.position).magnitude;
-        JumpTime = dis / JumpSpeed;
+        // JumpTime = dis / JumpSpeed;
+
+        Test2Speed = dis / JumpTime;
+        paramH = dis / 2;
+        paramA = paramK / (paramH * paramH);
     }
 
     void Start()
     {
-        var dis = (startPoint.position - endPoint.position).magnitude;
-        JumpTime = dis / JumpSpeed;
+        OnValidate();
     }
 
     void Update()
     {
-        // if (Input.GetKey(KeyCode.Space))
-        // {
-        //     Test2();
-        // }
         Test1();
     }
 
@@ -41,53 +42,45 @@ public class PlatformController : MonoBehaviour
             // maxHeight = 0;
             ChangeState(true);
         }
-        Jump();
+
+        if (isJump)
+        {
+            Jump();
+        }
     }
 
-    void Test2()
-    {
-        //面朝向移动
-        this.transform.Translate(Vector3.forward * 5 * Time.deltaTime);
-        //左右曲线移动
-        curJumpTime += Time.deltaTime * 3;
-        this.transform.Translate(Vector3.right * Time.deltaTime * Mathf.Sin(curJumpTime) * 3);
-    }
-
-    // public float maxHeight;
-    // public float maxHeightTemp;
 
     void Jump()
     {
-        if (isJump)
+        curJumpTime += Time.fixedDeltaTime;
+        if (curJumpTime < JumpTime)
         {
-            // curJumpTime += Time.deltaTime;
-            // if (curJumpTime < JumpTime)
-            // {
-            //     float t = curJumpTime / JumpTime;
-            //     transform.position = Lerp(startPoint.position, endPoint.position, t);
-            //     var x = t * Mathf.PI;
-            //     var heightOffet = Height - 3 > 0 ? Height - 3 : 0;
-            //     float posY = Mathf.Sin(x) * heightOffet;
-            //     transform.position += posY * Vector3.up;
-            // }
-            // else
-            // {
-            //     ChangeState(false);
-            //     curJumpTime = 0.0f;
-            // }
-
-            curJumpTime += Time.deltaTime;
-            if (curJumpTime < JumpTime)
-            {
-                Vector3 offset = GetOffset();
-                transform.position += offset;
-            }
-            else
-            {
-                ChangeState(false);
-                curJumpTime = 0.0f;
-            }
+            Vector3 offset = GetOffset2();
+            transform.position +=  offset;
         }
+        else
+        {
+            ChangeState(false);
+            curJumpTime = 0.0f;
+        }
+    }
+
+
+    [HideInInspector] public float paramA;
+    [HideInInspector] public float paramH;
+    [Header("===========test2============")]
+
+    public float paramK;
+    [HideInInspector] public float Test2Speed;
+
+    private Vector3 GetOffset2()
+    {
+        var x = Test2Speed * Time.fixedDeltaTime;
+        // y = a(x - h)^2 + k
+        var y = -paramA * (x - paramH) * (x - paramH) + paramK;
+
+        Vector3 offset = new Vector3(0, y, x);
+        return offset;
     }
 
     Vector3 GetOffset()
@@ -132,89 +125,3 @@ public class PlatformController : MonoBehaviour
         }
     }
 }
-
-// using UnityEngine;
-
-// public class PlatformController : MonoBehaviour
-// {
-//     public Transform target;
-//     public float maxHeight = 2f;
-//     public float duration = 2f;
-
-//     private Vector3 startPosition;
-//     private float startTime;
-
-//     private void Start()
-//     {
-//         startPosition = transform.position;
-//         startTime = Time.time;
-//     }
-
-//     private void Update()
-//     {
-//         if (target != null)
-//         {
-//             // 计算所需的初速度
-//             Vector3 displacement = target.position - startPosition;
-//             float displacementY = displacement.y;
-//             displacement.y = 0f;
-//             float horizontalDisplacement = displacement.magnitude;
-//             float time = Mathf.Sqrt(-2f * maxHeight / Physics.gravity.y) + Mathf.Sqrt(2f * (displacementY - maxHeight) / Physics.gravity.y);
-//             Vector3 velocity = new Vector3(0f, Mathf.Sqrt(-2f * Physics.gravity.y * maxHeight), 0f) + displacement.normalized * horizontalDisplacement / time;
-
-//             // 应用初速度
-//             float elapsedTime = Time.time - startTime;
-//             if (elapsedTime < duration)
-//             {
-//                 transform.position = startPosition + velocity * elapsedTime + 0.5f * Physics.gravity * elapsedTime * elapsedTime;
-//             }
-//             else
-//             {
-//                 transform.position = target.position;
-//             }
-//         }
-//     }
-// }
-
-
-// using UnityEngine;
-
-// public class PlatformController : MonoBehaviour
-// {
-//     public Transform targetPosition; // 目标位置
-//     public float totalTimeToReachTarget = 2.0f; // 到达目标位置所需的总时间
-
-//     private Vector3 initialPosition;
-//     private Vector3 target;
-//     private float startTime;
-
-//     private void Start()
-//     {
-//         initialPosition = transform.position;
-//         target = targetPosition.position;
-//         startTime = Time.time;
-//     }
-
-//     private void Update()
-//     {
-//         // 计算经过的时间
-//         float elapsedTime = Time.time - startTime;
-
-//         if (elapsedTime < totalTimeToReachTarget)
-//         {
-//             // 根据抛物线公式计算物体的新位置
-//             Vector3 newPosition = CalculateParabolicPosition(elapsedTime);
-//             transform.position = newPosition;
-//         }
-//     }
-
-//     // 根据抛物线公式计算物体在给定时间内的新位置
-//     private Vector3 CalculateParabolicPosition(float time)
-//     {
-//         float t = time / totalTimeToReachTarget;
-//         Vector3 position = Vector3.Lerp(initialPosition, target, t);
-//         position.y = initialPosition.y + (-Physics.gravity.y * Mathf.Pow(t, 2) * totalTimeToReachTarget) / 2;
-//         return position;
-//     }
-
-// }
