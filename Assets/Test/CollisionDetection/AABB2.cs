@@ -20,7 +20,7 @@ public class AABB2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateBox();
     }
 
     // Update is called once per frame
@@ -36,6 +36,6 @@ public class AABB2 : MonoBehaviour
         var pos = transform.position + box.center;
 
         Center = pos;
-        R = scale;
+        R = scale / 2;
     }
 }
