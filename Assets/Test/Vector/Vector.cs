@@ -6,11 +6,12 @@ public class Vector : MonoBehaviour
 {
     public Transform player;
     public Transform target;
+    Vector3 initPos;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        initPos = transform.position;
     }
 
     // Update is called once per frame
@@ -40,5 +41,14 @@ public class Vector : MonoBehaviour
         Debug.DrawLine(Vector3.zero, vectNew, Color.black);
 
         Debug.DrawLine(vect1, vect1 + vectNew, Color.yellow);
+
+        // （计算我前方10m远的坐标）计算a,b两点的相对位移，并在我的正前方计算出目标点b的相对坐标
+        var offsetXZ =  player.position - target.position;
+        var offsetY = offsetXZ.y;
+        offsetXZ.y = 0;
+
+        var targetPos = transform.position + transform.forward * offsetXZ.magnitude;
+        targetPos.y -= offsetY;
+        Debug.DrawLine(transform.position, targetPos, Color.yellow);
     }
 }
